@@ -6,8 +6,10 @@
     
     <title>微光積累</title>
     <meta name="apple-mobile-web-app-title" content="微光積累">
-    
-    <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFJ0lEQVR4nO3dy27bRhSA4XPKkiVbju0itvMQvS9S9K7oBfS+SNG7onfFrtN7m6YF0mZpYidRIsXh7ALA/78AZpA9MxzOfOfMkJpIkiSJQYp9AABvI7QBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENfAIkSZIkvvAfohE90M6269UAAAAASUVORK5CYII=">
+
+    <link rel="apple-touch-icon" href="https://img.icons8.com/clouds/200/4DB6AC/sun.png">
+    <link rel="icon" type="image/png" href="https://img.icons8.com/clouds/200/4DB6AC/sun.png">
+
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
@@ -39,7 +41,6 @@
         .cloud { position: absolute; background: white; border-radius: 100px; opacity: 0.5; filter: blur(20px); z-index: -1; animation: floatMove linear infinite; }
         @keyframes floatMove { from { transform: translateX(-200px); } to { transform: translateX(calc(100vw + 200px)); } }
 
-        /* 統計區 */
         .dashboard {
             width: 100%; max-width: 340px; display: flex; justify-content: space-around;
             background: rgba(255, 255, 255, 0.7); padding: 22px 0; border-radius: 30px;
@@ -76,7 +77,6 @@
         table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
         td { padding: 10px; text-align: center; border-bottom: 1px solid rgba(77, 182, 172, 0.05); }
 
-        /* ✨ 語錄區樣式 */
         .quote-area {
             width: 85%;
             text-align: center;
@@ -84,14 +84,7 @@
             padding: 15px;
             border-top: 1px inset rgba(77, 182, 172, 0.1);
         }
-        .quote-text {
-            font-size: 0.85rem;
-            color: var(--forest-deep);
-            line-height: 1.6;
-            font-style: italic;
-            opacity: 0.7;
-            transition: opacity 0.5s ease;
-        }
+        .quote-text { font-size: 0.85rem; color: var(--forest-deep); line-height: 1.6; font-style: italic; opacity: 0.7; transition: opacity 0.5s ease; }
     </style>
 </head>
 <body>
@@ -121,7 +114,7 @@
     </div>
 
     <div class="history-wrapper">
-        <button class="history-btn" id="history-btn" onclick="toggleHistory()">查看積累歷史</button>
+        <button class="history-btn" onclick="toggleHistory()">查看積累歷史</button>
         <div class="history-content" id="history-content">
             <table><tbody id="history-list"></tbody></table>
         </div>
@@ -144,20 +137,15 @@
             "「在看不見的地方努力，在看得見的地方閃耀。」"
         ];
 
-        let pool = JSON.parse(localStorage.getItem('v22_pool')) || Array.from({length: 365}, (_, i) => i + 1);
-        let logs = JSON.parse(localStorage.getItem('v22_logs')) || [];
+        let pool = JSON.parse(localStorage.getItem('v23_pool')) || Array.from({length: 365}, (_, i) => i + 1);
+        let logs = JSON.parse(localStorage.getItem('v23_logs')) || [];
 
-        function toggleHistory() {
-            document.getElementById('history-content').classList.toggle('show');
-        }
+        function toggleHistory() { document.getElementById('history-content').classList.toggle('show'); }
 
         function updateQuote() {
-            const quoteElem = document.getElementById('quote-display');
-            quoteElem.style.opacity = 0;
-            setTimeout(() => {
-                quoteElem.innerText = quotes[Math.floor(Math.random() * quotes.length)];
-                quoteElem.style.opacity = 0.7;
-            }, 500);
+            const q = document.getElementById('quote-display');
+            q.style.opacity = 0;
+            setTimeout(() => { q.innerText = quotes[Math.floor(Math.random() * quotes.length)]; q.style.opacity = 0.7; }, 500);
         }
 
         function refresh() {
@@ -165,7 +153,6 @@
             document.getElementById('total-val').innerText = `$${sum.toLocaleString()}`;
             document.getElementById('days-val').innerText = logs.length;
             document.getElementById('perc-val').innerText = Math.round((logs.length/365)*100) + '%';
-
             const list = document.getElementById('history-list');
             list.innerHTML = logs.slice().reverse().map(log => {
                 const d = log.date.split('/');
@@ -181,20 +168,13 @@
 
             const idx = Math.floor(Math.random() * pool.length);
             const amt = pool.splice(idx, 1)[0];
-
             document.getElementById('draw-amt').innerText = `$${amt}`;
             card.classList.add('is-flipped');
             document.getElementById('hint').innerText = "今日微光已收藏";
-
             logs.push({ date: today, amount: amt });
-            localStorage.setItem('v22_pool', JSON.stringify(pool));
-            localStorage.setItem('v22_logs', JSON.stringify(logs));
-
-            setTimeout(() => {
-                refresh();
-                updateQuote();
-                setTimeout(() => { card.classList.remove('is-flipped'); }, 2000);
-            }, 600);
+            localStorage.setItem('v23_pool', JSON.stringify(pool));
+            localStorage.setItem('v23_logs', JSON.stringify(logs));
+            setTimeout(() => { refresh(); updateQuote(); setTimeout(() => { card.classList.remove('is-flipped'); }, 2000); }, 600);
         }
 
         function clearAll() { if(confirm("確定要重設積累紀錄嗎？")) { localStorage.clear(); location.reload(); } }
