@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微光儲蓄｜亮綠森林</title>
+    <style>
+        :root {
+            --bg-base: #F7FAF9;       /* 更明亮的底色 */
+            --mint-bright: #4DB6AC;   /* 亮薄荷綠 */
+            --forest-deep: #2D6A64;   /* 森林深綠 */
+            --leaf-light: #B2DFDB;    /* 淺葉綠色 */
+            --white-card: #FFFFFF;
+            --text-color: #37474F;    
+        }
+
+        body {
+            background-color: var(--bg-base);
+            font-family: "PingFang TC", "STHeiti", sans-serif;
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ☁️ 動態漂浮雲朵 */
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 100px;
+            opacity: 0.8;
+            filter: blur(25px);
+            z-index: -1;
+            animation: floatMove linear infinite;
+        }
+
+        @keyframes floatMove {
+            from { transform: translateX(-350px); }
+            to { transform: translateX(calc(100vw + 350px)); }
+        }
+
+        /* 統計區：使用更亮眼的邊框 */
+        .dashboard {
+            width: 100%;
+            max-width: 340px;
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 22px 0;
+            border-radius: 35px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(77, 182, 172, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .dash-item .val {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--mint-bright);
+        }
+        .dash-item .label {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            opacity: 0.8;
+            color: var(--forest-deep);
+        }
+
+        h1 { font-weight: 300; font-size: 1.2rem; letter-spacing: 5px; margin-bottom: 40px; color: var(--mint-bright); }
+
+        /* 抽卡區 */
+        .card-box {
+            width: 200px;
+            height: 270px;
+            perspective: 1000px;
+            margin-bottom: 50px;
+        }
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+        .card.is-flipped { transform: rotateY(180deg); }
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: var(--white-card);
+            box-shadow: 0 25px 50px rgba(77, 182, 172, 0.15);
+        }
+        .card-back {
+            background: linear-gradient(135deg, var(--mint-bright), var(--forest-deep));
+            transform: rotateY(180deg);
+            color: white;
+        }
+        .amt { font-size: 2.8rem; font-weight: 200; }
+
+        /* 漸層淡出表格 */
+        .table-wrapper {
+            width: 100%;
+            max-width: 350px;
+            position: relative;
+            -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 40px;
+            overflow: hidden;
+        }
+        th { 
+            padding: 20px 10px; 
+            font-size: 0.8rem; 
+            font-weight: 500; 
+            background: rgba(178, 223, 219, 0.3);
+            color: var(--forest-deep);
+        }
+        td { 
+            padding: 16px; 
+            text-align: center; 
+            font-size: 0.9rem; 
+            border-bottom: 1px solid rgba(178, 223, 219, 0.2);
+        }
+
+        .btn-reset {
+            margin-top: 50px;
+            background: none;
+            border: none;
+            color: #BBB;
+            font-size: 0.7rem;
+            cursor: pointer;
+            letter-spacing: 2px;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cloud" style="width: 280px; height: 90px; top: 10%; animation-duration: 30s;"></div>
+    <div class="cloud" style="width: 200px; height: 70px; top: 50%; animation-duration: 45s; animation-delay: -5s;"></div>
+    <div class="cloud" style="width: 350px; height: 120px; top: 80%; animation-duration: 38s; animation-delay: -15s;"></div>
+
+    <div class="dashboard">
+        <div class="dash-item">
+            <span class="label">累積</span>
+            <span class="val" id="total-val">$0</span>
+        </div>
+        <div class="dash-item">
+            <span class="label">天數</span>
+            <span class="val" id="days-val">0</span>
+        </div>
+        <div class="dash-item">
+            <span class="label">進度</span>
+            <span class="val" id="perc-val">0%</span>
+        </div>
+    </div>
+
+    <h1 id="hint">每一天都是翠綠的新生</h1>
+
+    <div class="card-box">
+        <div class="card" id="card" onclick="flip()">
+            <div class="card-face card-front">
+                <span style="font-size: 2.5rem;">☀️</span>
+                <p style="font-size: 0.8rem; letter-spacing: 3px; margin-top: 15px; color: var(--mint-bright); font-weight: 600;">採集陽光</p>
+            </div>
+            <div class="card-face card-back">
+                <span style="font-size: 0.75rem; opacity: 0.9;">今日獲得</span>
+                <div class="amt" id="draw-amt">$0</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>日期</th>
+                    <th>金額</th>
+                    <th>紀錄</th>
+                </tr>
+            </thead>
+            <tbody id="list"></tbody>
+        </table>
+    </div>
+
+    <button class="btn-reset" onclick="clearAll()">RESET SYSTEM</button>
+
+    <script>
+        let pool = JSON.parse(localStorage.getItem('v10_pool')) || Array.from({length: 365}, (_, i) => i + 1);
+        let logs = JSON.parse(localStorage.getItem('v10_logs')) || [];
+
+        function refresh() {
+            const list = document.getElementById('list');
+            list.innerHTML = logs.slice().reverse().slice(0, 5).map(item => `
+                <tr>
+                    <td>${item.date.split('/')[1]}/${item.date.split('/')[2]}</td>
+                    <td style="color: var(--mint-bright); font-weight: 600;">$${item.amount}</td>
+                    <td style="color: var(--leaf-light); font-size: 0.8rem;">🌳</td>
+                </tr>
+            `).join('');
+
+            const sum = logs.reduce((a, b) => a + b.amount, 0);
+            document.getElementById('total-val').innerText = `$${sum.toLocaleString()}`;
+            document.getElementById('days-val').innerText = logs.length;
+            document.getElementById('perc-val').innerText = Math.round((logs.length/365)*100) + '%';
+        }
+
+        function flip() {
+            const today = new Date().toLocaleDateString();
+            if (logs.length > 0 && logs[logs.length-1].date === today) return;
+            
+            const card = document.getElementById('card');
+            if (card.classList.contains('is-flipped')) return;
+
+            const idx = Math.floor(Math.random() * pool.length);
+            const amt = pool.splice(idx, 1)[0];
+
+            document.getElementById('draw-amt').innerText = `$${amt}`;
+            card.classList.add('is-flipped');
+            document.getElementById('hint').innerText = "這份能量已轉化為成長";
+
+            logs.push({ date: today, amount: amt });
+            localStorage.setItem('v10_pool', JSON.stringify(pool));
+            localStorage.setItem('v10_logs', JSON.stringify(logs));
+
+            setTimeout(refresh, 600);
+        }
+
+        function clearAll() {
+            if(confirm("確定要重設這片陽光森林嗎？")) { localStorage.clear(); location.reload(); }
+        }
+
+        refresh();
+        const today = new Date().toLocaleDateString();
+        if (logs.length > 0 && logs[logs.length-1].date === today) {
+            document.getElementById('card').classList.add('is-flipped');
+            document.getElementById('draw-amt').innerText = `$${logs[logs.length-1].amount}`;
+            document.getElementById('hint').innerText = "今日採集已完成";
+        }
+    </script>
+</body>
+</html>
