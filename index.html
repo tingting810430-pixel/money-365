@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>微光儲蓄</title>
     
-    <link rel="apple-touch-icon" href="https://via.placeholder.com/180/4DB6AC/FFFFFF?text=365">
+    <title>微光積累</title>
+    <meta name="apple-mobile-web-app-title" content="微光積累">
+    
+    <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFJ0lEQVR4nO3dy27bRhSA4XPKkiVbju0itvMQvS9S9K7oBfS+SNG7onfFrtN7m6YF0mZpYidRIsXh7ALA/78AZpA9MxzOfOfMkJpIkiSJQYp9AABvI7QBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENGAhtwEBoAwZCGzAQ2oCB0AYMhDZgILQBA6ENfAIkSZIkvvAfohE90M6269UAAAAASUVORK5CYII=">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
@@ -26,126 +28,136 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
+            justify-content: space-between;
+            padding: 40px 20px;
             box-sizing: border-box;
             min-height: 100vh;
-            overflow-x: hidden;
+            overflow: hidden;
             position: relative;
         }
 
-        /* ☁️ 動態雲朵 */
-        .cloud { position: absolute; background: white; border-radius: 100px; opacity: 0.6; filter: blur(20px); z-index: -1; animation: floatMove linear infinite; }
+        .cloud { position: absolute; background: white; border-radius: 100px; opacity: 0.5; filter: blur(20px); z-index: -1; animation: floatMove linear infinite; }
         @keyframes floatMove { from { transform: translateX(-200px); } to { transform: translateX(calc(100vw + 200px)); } }
 
         /* 統計區 */
         .dashboard {
             width: 100%; max-width: 340px; display: flex; justify-content: space-around;
-            background: rgba(255, 255, 255, 0.7); padding: 18px 0; border-radius: 25px;
+            background: rgba(255, 255, 255, 0.7); padding: 22px 0; border-radius: 30px;
             backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(77, 182, 172, 0.08);
-            position: relative; margin-top: 10px;
+            position: relative;
         }
-        .dash-item .val { display: block; font-size: 1.3rem; font-weight: 600; color: var(--mint-bright); }
-        .dash-item .label { font-size: 0.6rem; letter-spacing: 1px; opacity: 0.6; color: var(--forest-deep); }
-        .btn-reset { position: absolute; top: 10px; right: 10px; width: 16px; height: 16px; background: rgba(77, 182, 172, 0.1); border-radius: 50%; border: none; color: var(--mint-bright); font-size: 8px; cursor: pointer; }
+        .dash-item .val { display: block; font-size: 1.4rem; font-weight: 600; color: var(--mint-bright); }
+        .dash-item .label { font-size: 0.65rem; opacity: 0.6; color: var(--forest-deep); }
+        .btn-reset { position: absolute; top: 12px; right: 12px; width: 18px; height: 18px; background: rgba(77, 182, 172, 0.1); border-radius: 50%; border: none; color: var(--mint-bright); font-size: 9px; cursor: pointer; }
 
-        h1 { font-weight: 300; font-size: 0.95rem; letter-spacing: 3px; color: var(--mint-bright); margin: 25px 0; text-align: center; }
+        h1 { font-weight: 300; font-size: 1rem; letter-spacing: 4px; color: var(--mint-bright); margin: 30px 0; }
 
-        /* 內容區 */
-        .main-content { width: 100%; display: flex; flex-direction: column; align-items: center; z-index: 5; }
-
-        /* 抽卡區 */
-        .card-box { width: 170px; height: 230px; perspective: 1000px; margin-bottom: 20px; }
+        .card-box { width: 180px; height: 250px; perspective: 1000px; margin-bottom: 20px; }
         .card { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; }
         .card.is-flipped { transform: rotateY(180deg); }
         .card-face {
-            position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 35px;
+            position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 40px;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             background: var(--white-card); box-shadow: 0 15px 35px rgba(77, 182, 172, 0.1);
         }
         .card-back { background: linear-gradient(135deg, var(--mint-bright), var(--forest-deep)); transform: rotateY(180deg); color: white; }
-        .amt { font-size: 2.5rem; font-weight: 200; }
+        .amt { font-size: 2.6rem; font-weight: 200; }
 
-        /* ✨ 下拉式歷史紀錄 */
-        .history-wrapper { width: 90%; max-width: 300px; margin-top: 10px; }
+        .history-wrapper { width: 90%; max-width: 300px; margin-bottom: auto; }
         .history-btn {
-            width: 100%; background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(77, 182, 172, 0.2);
-            padding: 10px; border-radius: 15px; color: var(--forest-deep); font-size: 0.75rem;
-            letter-spacing: 2px; cursor: pointer; display: flex; justify-content: center; align-items: center;
-            transition: all 0.3s;
+            width: 100%; background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(77, 182, 172, 0.15);
+            padding: 10px; border-radius: 15px; color: var(--forest-deep); font-size: 0.75rem; letter-spacing: 2px; cursor: pointer;
         }
-        .history-btn::after { content: '▾'; margin-left: 8px; transition: transform 0.3s; }
-        .history-btn.active::after { transform: rotate(180deg); }
-        
         .history-content {
             max-height: 0; overflow-y: auto; transition: max-height 0.5s ease;
-            background: rgba(255, 255, 255, 0.4); border-radius: 0 0 15px 15px; margin-top: -5px;
+            background: rgba(255, 255, 255, 0.4); border-radius: 0 0 15px 15px;
         }
-        .history-content.show { max-height: 150px; border: 1px solid rgba(77, 182, 172, 0.1); border-top: none; }
-        
+        .history-content.show { max-height: 160px; border: 1px solid rgba(77, 182, 172, 0.1); border-top: none; }
         table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
         td { padding: 10px; text-align: center; border-bottom: 1px solid rgba(77, 182, 172, 0.05); }
-        .td-amt { color: var(--mint-bright); font-weight: 600; }
 
-        /* 🌱 植物生長區 */
-        .plant-area {
-            position: fixed; bottom: 0; width: 100%; height: 120px;
-            display: flex; justify-content: center; align-items: flex-end;
-            padding-bottom: 15px; pointer-events: none; z-index: 1;
+        /* ✨ 語錄區樣式 */
+        .quote-area {
+            width: 85%;
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-top: 1px inset rgba(77, 182, 172, 0.1);
         }
-        .plant { font-size: 1.5rem; transition: font-size 1.2s cubic-bezier(0.34, 1.56, 0.64, 1); filter: drop-shadow(0 4px 8px rgba(77, 182, 172, 0.1)); }
+        .quote-text {
+            font-size: 0.85rem;
+            color: var(--forest-deep);
+            line-height: 1.6;
+            font-style: italic;
+            opacity: 0.7;
+            transition: opacity 0.5s ease;
+        }
     </style>
 </head>
 <body>
 
-    <div class="cloud" style="width: 150px; height: 50px; top: 10%; animation-duration: 45s;"></div>
+    <div class="cloud" style="width: 200px; height: 60px; top: 15%; animation-duration: 40s;"></div>
 
     <div class="dashboard">
         <button class="btn-reset" onclick="clearAll()">✕</button>
-        <div class="dash-item"><span class="label">累積金額</span><span class="val" id="total-val">$0</span></div>
-        <div class="dash-item"><span class="label">存錢天數</span><span class="val" id="days-val">0</span></div>
-        <div class="dash-item"><span class="label">完成進度</span><span class="val" id="perc-val">0%</span></div>
+        <div class="dash-item"><span class="label">積累總額</span><span class="val" id="total-val">$0</span></div>
+        <div class="dash-item"><span class="label">堅持天數</span><span class="val" id="days-val">0</span></div>
+        <div class="dash-item"><span class="label">達成進度</span><span class="val" id="perc-val">0%</span></div>
     </div>
 
-    <h1 id="hint">每一天都是翠綠的新生</h1>
+    <h1 id="hint">每一天都是點滴的微光</h1>
 
-    <div class="main-content">
-        <div class="card-box">
-            <div class="card" id="card" onclick="flip()">
-                <div class="card-face card-front">
-                    <span style="font-size: 2.2rem;">☀️</span>
-                    <p style="font-size: 0.65rem; letter-spacing: 2px; margin-top: 12px; color: var(--mint-bright); font-weight: 600;">採集陽光</p>
-                </div>
-                <div class="card-face card-back">
-                    <span style="font-size: 0.65rem; opacity: 0.8;">今日獲得</span>
-                    <div class="amt" id="draw-amt">$0</div>
-                </div>
+    <div class="card-box">
+        <div class="card" id="card" onclick="flip()">
+            <div class="card-face card-front">
+                <span style="font-size: 2.2rem;">☀️</span>
+                <p style="font-size: 0.7rem; letter-spacing: 2px; margin-top: 12px; color: var(--mint-bright); font-weight: 600;">採集微光</p>
             </div>
-        </div>
-
-        <div class="history-wrapper">
-            <button class="history-btn" id="history-btn" onclick="toggleHistory()">查看儲蓄歷史紀錄</button>
-            <div class="history-content" id="history-content">
-                <table>
-                    <tbody id="history-list">
-                        </tbody>
-                </table>
+            <div class="card-face card-back">
+                <span style="font-size: 0.65rem; opacity: 0.8;">今日積累</span>
+                <div class="amt" id="draw-amt">$0</div>
             </div>
         </div>
     </div>
 
-    <div class="plant-area">
-        <span class="plant" id="growing-plant">🌱</span>
+    <div class="history-wrapper">
+        <button class="history-btn" id="history-btn" onclick="toggleHistory()">查看積累歷史</button>
+        <div class="history-content" id="history-content">
+            <table><tbody id="history-list"></tbody></table>
+        </div>
+    </div>
+
+    <div class="quote-area">
+        <p class="quote-text" id="quote-display">「所有的微光，終將匯聚成星河。」</p>
     </div>
 
     <script>
-        let pool = JSON.parse(localStorage.getItem('v18_pool')) || Array.from({length: 365}, (_, i) => i + 1);
-        let logs = JSON.parse(localStorage.getItem('v18_logs')) || [];
+        const quotes = [
+            "「所有的微光，終將匯聚成星河。」",
+            "「財富不是一蹴而就，而是點滴的累積。」",
+            "「慢慢來，比較快。」",
+            "「今天的每一分努力，都是對未來的回報。」",
+            "「時間是財富最好的朋友。」",
+            "「自律的痛苦輕如鴻毛，後悔的痛苦重如泰山。」",
+            "「每一筆儲蓄，都是在為自由買單。」",
+            "「持之以恆，是世界上最偉大的力量。」",
+            "「在看不見的地方努力，在看得見的地方閃耀。」"
+        ];
+
+        let pool = JSON.parse(localStorage.getItem('v22_pool')) || Array.from({length: 365}, (_, i) => i + 1);
+        let logs = JSON.parse(localStorage.getItem('v22_logs')) || [];
 
         function toggleHistory() {
-            const btn = document.getElementById('history-btn');
-            const content = document.getElementById('history-content');
-            btn.classList.toggle('active');
-            content.classList.toggle('show');
+            document.getElementById('history-content').classList.toggle('show');
+        }
+
+        function updateQuote() {
+            const quoteElem = document.getElementById('quote-display');
+            quoteElem.style.opacity = 0;
+            setTimeout(() => {
+                quoteElem.innerText = quotes[Math.floor(Math.random() * quotes.length)];
+                quoteElem.style.opacity = 0.7;
+            }, 500);
         }
 
         function refresh() {
@@ -154,17 +166,11 @@
             document.getElementById('days-val').innerText = logs.length;
             document.getElementById('perc-val').innerText = Math.round((logs.length/365)*100) + '%';
 
-            // 更新歷史表格 (倒序顯示，最新的在上面)
             const list = document.getElementById('history-list');
             list.innerHTML = logs.slice().reverse().map(log => {
                 const d = log.date.split('/');
-                return `<tr><td>${d[1]}/${d[2]}</td><td class="td-amt">$${log.amount}</td><td>✔️</td></tr>`;
+                return `<tr><td>${d[1]}/${d[2]}</td><td style="color:var(--mint-bright);font-weight:600">$${log.amount}</td><td>✓</td></tr>`;
             }).join('');
-
-            // 更新植物大小
-            const plant = document.getElementById('growing-plant');
-            const newSize = 1.5 + (5.5 * Math.min(sum / 50000, 1));
-            plant.style.fontSize = `${newSize}rem`;
         }
 
         function flip() {
@@ -178,28 +184,28 @@
 
             document.getElementById('draw-amt').innerText = `$${amt}`;
             card.classList.add('is-flipped');
-            document.getElementById('hint').innerText = "能量已灌溉至森林";
+            document.getElementById('hint').innerText = "今日微光已收藏";
 
             logs.push({ date: today, amount: amt });
-            localStorage.setItem('v18_pool', JSON.stringify(pool));
-            localStorage.setItem('v18_logs', JSON.stringify(logs));
+            localStorage.setItem('v22_pool', JSON.stringify(pool));
+            localStorage.setItem('v22_logs', JSON.stringify(logs));
 
             setTimeout(() => {
                 refresh();
+                updateQuote();
                 setTimeout(() => { card.classList.remove('is-flipped'); }, 2000);
             }, 600);
         }
 
-        function clearAll() { 
-            if(confirm("確定要讓森林重新開始嗎？")) { localStorage.clear(); location.reload(); } 
-        }
+        function clearAll() { if(confirm("確定要重設積累紀錄嗎？")) { localStorage.clear(); location.reload(); } }
 
         refresh();
+        updateQuote();
         const today = new Date().toLocaleDateString();
         if (logs.length > 0 && logs[logs.length-1].date === today) {
             document.getElementById('card').classList.add('is-flipped');
             document.getElementById('draw-amt').innerText = `$${logs[logs.length-1].amount}`;
-            document.getElementById('hint').innerText = "今日採集已完成";
+            document.getElementById('hint').innerText = "今日積累已完成";
         }
     </script>
 </body>
