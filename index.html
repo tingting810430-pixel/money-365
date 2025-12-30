@@ -2,228 +2,258 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    
-    <title>微光積累</title>
-    <meta name="apple-mobile-web-app-title" content="微光積累">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="mobile-web-app-capable" content="yes">
-    
-    <link rel="apple-touch-icon" href="https://img.icons8.com/clouds/200/natural-food.png">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微光儲蓄｜亮綠森林</title>
     <style>
         :root {
-            --bg-forest: #f0f4ef;
-            --text-main: #3a473a;
-            --accent-sage: #7c8c6d;
-            --pay-deep: #4a5d4a;
-            --btn-light-green: #c8d5bb;
-            --progress-bg: #e2e8df;
-            --completed-green: #8ba888;
+            --bg-base: #F7FAF9;       /* 更明亮的底色 */
+            --mint-bright: #4DB6AC;   /* 亮薄荷綠 */
+            --forest-deep: #2D6A64;   /* 森林深綠 */
+            --leaf-light: #B2DFDB;    /* 淺葉綠色 */
+            --white-card: #FFFFFF;
+            --text-color: #37474F;    
         }
 
         body {
-            font-family: -apple-system, "PingFang TC", "Microsoft JhengHei", sans-serif;
-            background-color: var(--bg-forest);
-            color: var(--text-main);
+            background-color: var(--bg-base);
+            font-family: "PingFang TC", "STHeiti", sans-serif;
+            color: var(--text-color);
             margin: 0;
-            padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
             display: flex;
-            justify-content: center;
-            -webkit-tap-highlight-color: transparent;
-            user-select: none;
-        }
-
-        .phone-container {
-            width: 100%;
-            max-width: 414px;
-            padding: 20px;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        header { text-align: center; margin: 30px 0; }
-        h1 { font-size: 2.1rem; font-weight: 500; letter-spacing: 8px; margin: 0; color: var(--text-main); }
-        .subtitle { font-size: 0.85rem; color: var(--accent-sage); margin-top: 12px; opacity: 0.8; letter-spacing: 2px; }
-
-        .progress-section {
-            background: #ffffff;
-            border-radius: 30px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+        /* ☁️ 動態漂浮雲朵 */
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 100px;
+            opacity: 0.8;
+            filter: blur(25px);
+            z-index: -1;
+            animation: floatMove linear infinite;
         }
 
-        .rate-info { display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 0.9rem; font-weight: 600; color: var(--accent-sage); }
-        .bar-bg { height: 12px; background: var(--progress-bg); border-radius: 6px; overflow: hidden; }
-        .bar-fill { height: 100%; background: var(--accent-sage); width: 0%; transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            padding-bottom: 40px;
+        @keyframes floatMove {
+            from { transform: translateX(-350px); }
+            to { transform: translateX(calc(100vw + 350px)); }
         }
 
-        .box {
-            background: #ffffff;
-            aspect-ratio: 1;
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: transform 0.2s, background-color 0.3s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-        }
-        .box:active { transform: scale(0.92); }
-        .box.completed { background-color: var(--completed-green); }
-        .box-day { font-size: 0.6rem; opacity: 0.5; margin-bottom: 2px; }
-        .box-amt { font-size: 1.15rem; font-weight: 600; }
-        .completed div { color: white !important; opacity: 1; }
-
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(42, 53, 42, 0.4);
-            backdrop-filter: blur(12px);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .pay-modal {
-            background: var(--pay-deep);
-            border-radius: 45px;
-            padding: 45px 30px;
-            width: 85%;
-            max-width: 320px;
-            text-align: center;
-            color: white;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
-            animation: pop 0.4s cubic-bezier(0.17, 0.89, 0.32, 1.2);
-        }
-
-        @keyframes pop { from { opacity: 0; transform: scale(0.8) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
-
-        .btn-confirm {
-            background: var(--btn-light-green);
-            color: var(--pay-deep);
+        /* 統計區：使用更亮眼的邊框 */
+        .dashboard {
             width: 100%;
-            height: 65px;
-            border-radius: 25px;
-            border: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-top: 30px;
+            max-width: 340px;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            justify-content: space-around;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 22px 0;
+            border-radius: 35px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(77, 182, 172, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .dash-item .val {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--mint-bright);
+        }
+        .dash-item .label {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            opacity: 0.8;
+            color: var(--forest-deep);
         }
 
-        footer { text-align: center; padding: 40px 0; font-size: 0.75rem; color: var(--accent-sage); opacity: 0.5; letter-spacing: 3px; }
+        h1 { font-weight: 300; font-size: 1.2rem; letter-spacing: 5px; margin-bottom: 40px; color: var(--mint-bright); }
+
+        /* 抽卡區 */
+        .card-box {
+            width: 200px;
+            height: 270px;
+            perspective: 1000px;
+            margin-bottom: 50px;
+        }
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+        .card.is-flipped { transform: rotateY(180deg); }
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: var(--white-card);
+            box-shadow: 0 25px 50px rgba(77, 182, 172, 0.15);
+        }
+        .card-back {
+            background: linear-gradient(135deg, var(--mint-bright), var(--forest-deep));
+            transform: rotateY(180deg);
+            color: white;
+        }
+        .amt { font-size: 2.8rem; font-weight: 200; }
+
+        /* 漸層淡出表格 */
+        .table-wrapper {
+            width: 100%;
+            max-width: 350px;
+            position: relative;
+            -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 40px;
+            overflow: hidden;
+        }
+        th { 
+            padding: 20px 10px; 
+            font-size: 0.8rem; 
+            font-weight: 500; 
+            background: rgba(178, 223, 219, 0.3);
+            color: var(--forest-deep);
+        }
+        td { 
+            padding: 16px; 
+            text-align: center; 
+            font-size: 0.9rem; 
+            border-bottom: 1px solid rgba(178, 223, 219, 0.2);
+        }
+
+        .btn-reset {
+            margin-top: 50px;
+            background: none;
+            border: none;
+            color: #BBB;
+            font-size: 0.7rem;
+            cursor: pointer;
+            letter-spacing: 2px;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 
-<div class="phone-container">
-    <header>
-        <h1>微 光 積 累</h1>
-        <div class="subtitle">每一份微小，終將匯聚成璀璨星河</div>
-    </header>
+    <div class="cloud" style="width: 280px; height: 90px; top: 10%; animation-duration: 30s;"></div>
+    <div class="cloud" style="width: 200px; height: 70px; top: 50%; animation-duration: 45s; animation-delay: -5s;"></div>
+    <div class="cloud" style="width: 350px; height: 120px; top: 80%; animation-duration: 38s; animation-delay: -15s;"></div>
 
-    <div class="progress-section">
-        <div class="rate-info">
-            <span>累積進度 <span id="rate">0.0</span>%</span>
-            <span>已點亮 <span id="days">0</span> / 365</span>
+    <div class="dashboard">
+        <div class="dash-item">
+            <span class="label">累積</span>
+            <span class="val" id="total-val">$0</span>
         </div>
-        <div class="bar-bg"><div class="bar-fill" id="fill"></div></div>
+        <div class="dash-item">
+            <span class="label">天數</span>
+            <span class="val" id="days-val">0</span>
+        </div>
+        <div class="dash-item">
+            <span class="label">進度</span>
+            <span class="val" id="perc-val">0%</span>
+        </div>
     </div>
 
-    <div id="grid" class="grid"></div>
-    <footer>— 守候微光，靜待花開 —</footer>
-</div>
+    <h1 id="hint">每一天都是翠綠的新生</h1>
 
-<div class="modal-overlay" id="modalOverlay">
-    <div class="pay-modal">
-        <div style="opacity: 0.6; font-size: 0.8rem; letter-spacing: 2px;">本次積累</div>
-        <div style="font-size: 3.2rem; font-weight: 200; margin: 15px 0;">$<span id="modalAmt">0</span></div>
-        <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 20px; font-size: 0.9rem; margin-top: 10px;">
-            支付後餘額 $<span id="walletAmt">0</span>
+    <div class="card-box">
+        <div class="card" id="card" onclick="flip()">
+            <div class="card-face card-front">
+                <span style="font-size: 2.5rem;">☀️</span>
+                <p style="font-size: 0.8rem; letter-spacing: 3px; margin-top: 15px; color: var(--mint-bright); font-weight: 600;">採集陽光</p>
+            </div>
+            <div class="card-face card-back">
+                <span style="font-size: 0.75rem; opacity: 0.9;">今日獲得</span>
+                <div class="amt" id="draw-amt">$0</div>
+            </div>
         </div>
-        <button class="btn-confirm" onclick="confirmPay()">
-            <svg style="width:24px;height:24px;fill:var(--pay-deep)" viewBox="0 0 24 24">
-                <path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z" />
-            </svg>
-            確認點亮
-        </button>
-        <div onclick="closeModal()" style="margin-top: 25px; font-size: 0.85rem; opacity: 0.5; text-decoration: underline; cursor: pointer;">再考慮一下</div>
     </div>
-</div>
 
-<script>
-    const STORAGE_KEY = 'glimmer_accumulate_data_final';
-    const WALLET_KEY = 'glimmer_accumulate_wallet_final';
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>日期</th>
+                    <th>金額</th>
+                    <th>紀錄</th>
+                </tr>
+            </thead>
+            <tbody id="list"></tbody>
+        </table>
+    </div>
 
-    let completed = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-    let wallet = JSON.parse(localStorage.getItem(WALLET_KEY));
-    if (wallet === null) wallet = 66795;
+    <button class="btn-reset" onclick="clearAll()">RESET SYSTEM</button>
 
-    function init() {
-        const grid = document.getElementById('grid');
-        grid.innerHTML = '';
-        for (let i = 1; i <= 365; i++) {
-            const div = document.createElement('div');
-            div.className = 'box' + (completed.includes(i) ? ' completed' : '');
-            div.innerHTML = `<div class="box-day">DAY ${i}</div><div class="box-amt">${i}</div>`;
-            div.onclick = () => openModal(i);
-            grid.appendChild(div);
+    <script>
+        let pool = JSON.parse(localStorage.getItem('v10_pool')) || Array.from({length: 365}, (_, i) => i + 1);
+        let logs = JSON.parse(localStorage.getItem('v10_logs')) || [];
+
+        function refresh() {
+            const list = document.getElementById('list');
+            list.innerHTML = logs.slice().reverse().slice(0, 5).map(item => `
+                <tr>
+                    <td>${item.date.split('/')[1]}/${item.date.split('/')[2]}</td>
+                    <td style="color: var(--mint-bright); font-weight: 600;">$${item.amount}</td>
+                    <td style="color: var(--leaf-light); font-size: 0.8rem;">🌳</td>
+                </tr>
+            `).join('');
+
+            const sum = logs.reduce((a, b) => a + b.amount, 0);
+            document.getElementById('total-val').innerText = `$${sum.toLocaleString()}`;
+            document.getElementById('days-val').innerText = logs.length;
+            document.getElementById('perc-val').innerText = Math.round((logs.length/365)*100) + '%';
         }
-        updateUI();
-    }
 
-    function openModal(i) {
-        if(completed.includes(i)){
-            if(confirm("要熄滅這天的微光並退回金額嗎？")) { 
-                completed = completed.filter(a=>a!==i); 
-                wallet+=i; 
-                init(); 
-            }
-            return;
+        function flip() {
+            const today = new Date().toLocaleDateString();
+            if (logs.length > 0 && logs[logs.length-1].date === today) return;
+            
+            const card = document.getElementById('card');
+            if (card.classList.contains('is-flipped')) return;
+
+            const idx = Math.floor(Math.random() * pool.length);
+            const amt = pool.splice(idx, 1)[0];
+
+            document.getElementById('draw-amt').innerText = `$${amt}`;
+            card.classList.add('is-flipped');
+            document.getElementById('hint').innerText = "這份能量已轉化為成長";
+
+            logs.push({ date: today, amount: amt });
+            localStorage.setItem('v10_pool', JSON.stringify(pool));
+            localStorage.setItem('v10_logs', JSON.stringify(logs));
+
+            setTimeout(refresh, 600);
         }
-        window.pendingAmt = i;
-        document.getElementById('modalAmt').innerText = i;
-        document.getElementById('walletAmt').innerText = (wallet - i).toLocaleString();
-        document.getElementById('modalOverlay').style.display = 'flex';
-    }
 
-    function closeModal() { document.getElementById('modalOverlay').style.display = 'none'; }
-
-    function confirmPay() {
-        if (wallet >= window.pendingAmt) {
-            wallet -= window.pendingAmt;
-            completed.push(window.pendingAmt);
-            closeModal();
-            init();
+        function clearAll() {
+            if(confirm("確定要重設這片陽光森林嗎？")) { localStorage.clear(); location.reload(); }
         }
-    }
 
-    function updateUI() {
-        document.getElementById('days').innerText = completed.length;
-        let currentTotal = completed.reduce((a, b) => a + b, 0);
-        let rate = ((currentTotal / 66795) * 100).toFixed(1);
-        document.getElementById('rate').innerText = rate;
-        document.getElementById('fill').style.width = Math.min(rate, 100) + '%';
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(completed));
-        localStorage.setItem(WALLET_KEY, JSON.stringify(wallet));
-    }
-    
-    init();
-</script>
+        refresh();
+        const today = new Date().toLocaleDateString();
+        if (logs.length > 0 && logs[logs.length-1].date === today) {
+            document.getElementById('card').classList.add('is-flipped');
+            document.getElementById('draw-amt').innerText = `$${logs[logs.length-1].amount}`;
+            document.getElementById('hint').innerText = "今日採集已完成";
+        }
+    </script>
 </body>
 </html>
